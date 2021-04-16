@@ -7,7 +7,7 @@ function Clientes() {
 
   async function fetchData() {
     const respuesta= await fetch(
-      'http://localhost:8000/api/clientes',
+      'http://localhost:8000/api/cliente',
       {
         method: 'GET',
       }
