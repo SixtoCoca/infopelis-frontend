@@ -1,4 +1,4 @@
-import { Button, Grid, makeStyles, Paper, Typography } from '@material-ui/core';
+import { Button, Grid, makeStyles, Paper, Typography, Box } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,13 +30,10 @@ function Home() {
   }, []);
 
   return (
-    <Grid container spacing={3}>
+    <Box >
+      <Typography align="center" variant="h1">Infopelis</Typography>
 
-      <Grid container item justify="center">
-        <Typography variant="h1">Infopelis</Typography>
-      </Grid>
-
-      <Grid container item justify="center" spacing={3} >
+      <Grid container justify="center" spacing={3} >
         {
           clientes.map((cliente) => (
             <Grid item xs={6} key={cliente.id}>
@@ -45,12 +42,10 @@ function Home() {
           ))
         }
       </Grid>
-
-      <Grid container item justify="center">
+      <Grid container justify="center">
         <Button variant="contained" color="primary">ss</Button>
       </Grid>
-
-    </Grid>
+    </Box>
   );
 }
 

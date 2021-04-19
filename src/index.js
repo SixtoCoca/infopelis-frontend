@@ -4,10 +4,13 @@ import reportWebVitals from './reportWebVitals';
 import { Router, theme } from './config';
 import { ThemeProvider } from '@material-ui/styles';
 import 'fontsource-roboto';
+// import './index.css';
+import { CssBaseline } from '@material-ui/core';
 
 
 ReactDOM.render(
   <React.StrictMode>
+    <CssBaseline />
     <ThemeProvider theme={theme}>
       <Router />
     </ThemeProvider>
