@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Router, theme } from './config';
+import { ThemeProvider } from '@material-ui/styles';
+import 'fontsource-roboto';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <Router />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
