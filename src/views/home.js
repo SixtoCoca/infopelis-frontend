@@ -37,7 +37,7 @@ function Home() {
         {
           clientes.map((cliente) => (
             <Grid item xs={6} key={cliente.id}>
-              <Paper className={classes.paper} elevation={3}>{cliente.nombre}</Paper>
+              <Paper className={classes.paper} elevation={3}>{cliente.nombre} {cliente.Apellidos}</Paper>
             </Grid>
           ))
         }
