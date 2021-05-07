@@ -10,10 +10,16 @@ import React, { useState, useEffect } from "react";
 const useStyles = makeStyles((theme) => ({
   Typography: { padding: theme.spacing(2) },
   Button: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.secondary.contrastText,
-    background: theme.palette.secondary.main,
+   display: "inline",
+   fontSize: 40,
+   color: theme.palette.secondary.contrastText,
+ 	 textAlign: "center",
+ 	 userSelect: "none",
+ 	 backgroundColor: "transparent",
+ 	 border: "hidden",
+ 	 padding: theme.spacing(2),
+ 	 lineHeight: 1.5,
+ 	 borderRadius: 0.25,
   },
 }));
 function Movie() {
@@ -81,6 +87,7 @@ function Movie() {
             name="test"
           />
           <Button
+           	class={classes.Button}
             variant="contained"
             color="primary"
             onClick={() => {
