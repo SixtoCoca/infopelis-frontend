@@ -41,6 +41,7 @@ function Movie() {
   const [valor, setValor] = useState("");
   const [error, setError] = useState("");
   const [movie, setMovie] = useState([]);
+  const [moviedb, setMoviedb] = useState([]);
   const classes = useStyles();
 
   async function fetchData() {
@@ -56,12 +57,23 @@ function Movie() {
     }
 
     setMovie(await respuesta.json());
-    console.log(movie);
+    
+    var respuestadb = "";
+    if (valor != "") {
+      respuestadb = await fetch("http://localhost:8000/api/omdb/" + valor, {
+        method: "GET",
+      });
+    } else {
+      respuestadb = await fetch("http://localhost:8000/api/omdb", {
+        method: "GET",
+      });
+    }
   }
 
   useEffect(() => {
     fetchData();
   }, []);
+
   if (movie.Response == "False") {
     return (
       <Box>
