@@ -46,7 +46,7 @@ function Movie() {
   async function fetchData() {
     var respuesta = "";
     if (valor != "") {
-      respuesta = await fetch("http://localhost:8000/api/omdb/" + valor, {
+      respuesta = await fetch("http://localhost:8000/api/omdb?nombre=" + valor, {
         method: "GET",
       });
     } else {
