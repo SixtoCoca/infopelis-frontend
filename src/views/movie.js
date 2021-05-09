@@ -9,37 +9,36 @@ import {
 import React, { useState, useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
-  Typography: { 
+  Typography: {
     padding: theme.spacing(2),
     fontFamily: "Times New Roman",
     textAlign: "center",
     textDecoration: "underline",
     fontSize: 50,
   },
-    
+
   Button: {
     display: "inline",
     fontSize: 20,
     textcolor: theme.palette.secondary.contrastText,
- 	 textAlign: "center",
- 	 userSelect: "none",
- 	 backgroundColor: "transparent",
- 	 border: "solid lightblue",
- 	 padding: theme.spacing(2),
- 	 lineHeight: 0.75,
- 	 borderRadius: 0.15,
- 	 padding: 10,
- 	 margin: 10,
+    textAlign: "center",
+    userSelect: "none",
+    backgroundColor: "transparent",
+    border: "solid lightblue",
+    padding: theme.spacing(2),
+    lineHeight: 0.75,
+    borderRadius: 0.15,
+    padding: 10,
+    margin: 10,
   },
-  
+
   Grid: {
-	 marginTop: "10%",
-  }
-  
+    marginTop: "10%",
+  },
 }));
 function Movie() {
   const [valor, setValor] = useState("");
-  const [error, setError] = useState("");
+  const [valordb, setValordb] = useState("");
   const [movie, setMovie] = useState([]);
   const [moviedb, setMoviedb] = useState([]);
   const classes = useStyles();
@@ -57,17 +56,24 @@ function Movie() {
     }
 
     setMovie(await respuesta.json());
-    
+    setValordb(movie.imdbID);
+
     var respuestadb = "";
-    if (valor != "") {
-      respuestadb = await fetch("http://localhost:8000/api/omdb/" + valor, {
-        method: "GET",
-      });
+    if (valordb != "") {
+      respuestadb = await fetch(
+        "http://localhost:8000/api/moviedb/" + valordb,
+        {
+          method: "GET",
+        }
+      );
     } else {
-      respuestadb = await fetch("http://localhost:8000/api/omdb", {
+      respuestadb = await fetch("http://localhost:8000/api/moviedb", {
         method: "GET",
       });
     }
+    setMoviedb(await respuestadb.json());
+    console.log(movie);
+    console.log(moviedb);
   }
 
   useEffect(() => {
@@ -98,11 +104,14 @@ function Movie() {
             show
           </Button>
         </Container>
-      </Box>);
+      </Box>
+    );
   } else {
+
+
     return (
       <Box>
-        <Typography class ={classes.Typography}align="center" variant="h1">
+        <Typography class={classes.Typography} align="center" variant="h1">
           {movie.Title}
         </Typography>
         <Container>
@@ -113,9 +122,9 @@ function Movie() {
             value={valor}
             name="test"
           />
-          <Button 
-           	class={classes.Button}
-           	variant="contained"
+          <Button
+            class={classes.Button}
+            variant="contained"
             color="primary"
             onClick={() => {
               fetchData();
@@ -128,13 +137,19 @@ function Movie() {
         <Box justifyContent="space-around" display="flex">
           <img src={movie.Poster}></img>
           <Grid class={classes.Grid}>
-          <Typography align="center"> Actors: {movie.Actors}</Typography>
-          <Typography align="center"> Country: {movie.Country}</Typography>
-          <Typography align="center"> Plot: {movie.Plot}</Typography>
-          <Typography align="center"> Production: {movie.Production}</Typography>
-          <Typography align="center"> Writer: {movie.Writer}</Typography>
-          <Typography align="center"> Released: {movie.Released}</Typography>
-          <Typography align="center"> imdbRating: {movie.imdbRating}</Typography>
+            <Typography align="center"> Actors: {movie.Actors}</Typography>
+            <Typography align="center"> Country: {movie.Country}</Typography>
+            <Typography align="center"> Plot: {movie.Plot}</Typography>
+            <Typography align="center">
+              {" "}
+              Production: {movie.Production}
+            </Typography>
+            <Typography align="center"> Writer: {movie.Writer}</Typography>
+            <Typography align="center"> Released: {movie.Released}</Typography>
+            <Typography align="center">
+              {" "}
+              imdbRating: {movie.imdbRating}
+            </Typography>
           </Grid>
         </Box>
       </Box>
