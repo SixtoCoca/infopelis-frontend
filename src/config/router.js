@@ -1,5 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Home from "../views/home";
+import Home from "../views/home/home";
 import Movie from "../views/movie";
 
 function Router(props) {
