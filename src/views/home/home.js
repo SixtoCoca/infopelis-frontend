@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import Productores from './productions';
+import Available from './available';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -52,8 +53,8 @@ function Home() {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log(movie);
 
+  console.log(movie);
   if (!movie.response) {
     return (
       <Box>
@@ -143,53 +144,8 @@ function Home() {
             <Typography align="center"> {movie.review2}</Typography>
             <Typography align="center"> {movie.review3}</Typography>
             <Productores production={movie.production}></Productores>
-            <Typography
-              className={classes.Typography}
-              align="center"
-              variant="h2"
-            >
-              Sitios disponibles:
-            </Typography>
-            <Typography
-              className={classes.Typography}
-              align="center"
-              variant="h3"
-            >
-              Para comprar:
-            </Typography>
-            <Typography align="center">
-              {movie.providers.buy.forEach(function (elemento, indice, array) {
-                console.log(elemento);
-              })}
-            </Typography>
-            <Typography
-              className={classes.Typography}
-              align="center"
-              variant="h3"
-            >
-              Ver online:
-            </Typography>
-            <Typography align="center">
-              {movie.providers.flatrate.forEach(function (
-                elemento,
-                indice,
-                array
-              ) {
-                console.log(elemento);
-              })}
-            </Typography>
-            <Typography
-              className={classes.Typography}
-              align="center"
-              variant="h3"
-            >
-              Para alquilar:
-            </Typography>
-            <Typography align="center">
-              {movie.providers.rent.forEach(function (elemento, indice, array) {
-                console.log(elemento);
-              })}
-            </Typography>
+            
+            <Available Available={movie.providers}></Available> 
           </Grid>
         </Box>
       </Box>
