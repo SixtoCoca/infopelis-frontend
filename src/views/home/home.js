@@ -4,11 +4,12 @@ import {
   Typography,
   Container,
   Grid,
+  Paper,
   Button,
 } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
-import Productores from './productions';
-import Available from './available';
+import Productores from "./productions";
+import Available from "./available";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,15 +37,19 @@ function Home() {
     let respuesta = "";
     if (valor != "") {
       respuesta = await fetch(
-        "http://localhost:8000/api/movie?nombre=" + valor,
+        "https://infopelis-backend-5kqu2qobqq-ew.a.run.app/api/movie?nombre=" +
+          valor,
         {
           method: "GET",
         }
       );
     } else {
-      respuesta = await fetch("http://localhost:8000/api/movie", {
-        method: "GET",
-      });
+      respuesta = await fetch(
+        "https://infopelis-backend-5kqu2qobqq-ew.a.run.app/api/movie",
+        {
+          method: "GET",
+        }
+      );
     }
 
     setMovie(await respuesta.json());
@@ -119,8 +124,10 @@ function Home() {
 
         <Box justifyContent="space-around" display="flex">
           <img src={movie.poster}></img>
+
           <Grid className={classes.Grid}>
-            <Typography align="center"> Actors: {movie.actors}</Typography>
+          <Paper className={classes.paper}>
+          <Typography align="center"> Actors: {movie.actors}</Typography>
             <Typography align="center"> Country: {movie.country}</Typography>
             <Typography align="center"> Plot: {movie.plot}</Typography>
             <Typography align="center"> Writer: {movie.writer} </Typography>
@@ -132,20 +139,26 @@ function Home() {
             <Typography align="center">
               {" "}
               imdbRating: {movie.imdbRating}
-            </Typography>
-            <Typography
-              className={classes.Typography}
-              align="center"
-              variant="h2"
-            >
-              Algunas Opiniones:
-            </Typography>
-            <Typography align="center"> {movie.review1}</Typography>
-            <Typography align="center"> {movie.review2}</Typography>
-            <Typography align="center"> {movie.review3}</Typography>
+            </Typography>     
+            </Paper>
+
+            <Paper className={classes.paper}>
+              <Typography
+                className={classes.Typography}
+                align="center"
+                variant="h2"
+              >
+                Some opinions:
+              </Typography>
+
+              <Typography align="center"> {movie.review1}</Typography>
+              <Typography align="center"> {movie.review2}</Typography>
+              <Typography align="center"> {movie.review3}</Typography>
+            </Paper>
+
             <Productores production={movie.production}></Productores>
-            
-            <Available Available={movie.providers}></Available> 
+
+            <Available Available={movie.providers}></Available>
           </Grid>
         </Box>
       </Box>

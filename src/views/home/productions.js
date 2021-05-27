@@ -20,7 +20,7 @@ function Productores(props) {
     <>
       <Paper className={classes.paper}>
         <Typography className={classes.title} align="center" variant="h2">
-          Productores:
+          Producers:
         </Typography>
         <Typography align="center">
           {production.map((prod) => {

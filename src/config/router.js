@@ -1,6 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "../views/home/home";
-import Movie from "../views/movie";
 
 function Router(props) {
   return (
@@ -8,9 +7,6 @@ function Router(props) {
       <Switch>
         <Route path="/about">
           <div>About</div>
-        </Route>
-        <Route path="/movie">
-          <Movie />
         </Route>
         <Route path="/">
           <Home />
